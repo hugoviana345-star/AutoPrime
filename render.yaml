@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: autoprime-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python lib/backend/servidor.py
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_HOST
+        sync: false
