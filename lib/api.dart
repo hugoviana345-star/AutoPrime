@@ -13,7 +13,10 @@ class ErroApi implements Exception {
 
 class Api {
   // Servidor Python executado no mesmo computador do Chrome.
-  static const endereco = String.fromEnvironment('API_URL', defaultValue: 'http://127.0.0.1:5000');
+  static const endereco = String.fromEnvironment(
+  'API_URL',
+  defaultValue: 'https://autoprime-mjt5.onrender.com',
+);
   static String? _token;
   static bool visitante = false;
   static bool administrador = false;

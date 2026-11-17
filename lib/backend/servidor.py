@@ -94,8 +94,13 @@ PRODUTOS_INICIAIS = [{'id': '1',
 
 class BancoPostgres:
     def __init__(self, conexao): self.conexao = conexao
-    def execute(self, sql, parametros=()): return self.conexao.execute(sql.replace('?', '%s'), parametros)
-    def executemany(self, sql, parametros): return self.conexao.executemany(sql.replace('?', '%s'), parametros)
+
+    def execute(self, sql, parametros=()):
+        return self.conexao.execute(sql.replace('?', '%s'), parametros)
+
+    def executemany(self, sql, parametros):
+        with self.conexao.cursor() as cursor:
+            cursor.executemany(sql.replace('?', '%s'), parametros)
 
 
 class Aplicacao:
